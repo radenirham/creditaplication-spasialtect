@@ -51,6 +51,7 @@
               <th>Total Transaksi</th>
               <th>Tenor</th>
               <th>Item</th>
+              <th>Attribute</th>
               <th>Tanggal Dibuat</th>                        
               <th>Update</th>                        
               </tr>

@@ -6,10 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\UserDetails;
 use illuminate\Support\Facades\File;
-use App\Http\Resources\UserResource;
-use JWTAuth;
-use Exception;
-
 
 
 class UserController extends Controller
@@ -23,23 +19,6 @@ class UserController extends Controller
     {
         $user = user::all();
         return view('user.index',compact('user'));
-    }
-
-    public function user()
-    {
-        try{
-            $user = JWTAuth::parseToken()->authenticate();
-        }catch(Exception $e){
-            if($e instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException){
-                return response()->json(['error' => 'invalid token'], 400);
-            }else if($e instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException){
-                return response()->json(['error' => 'token expired'], 400);
-            }else{
-                return response()->json(['error' => 'token not found'], 401);
-            }
-            
-        }
-        return new UserResource($user);
     }
 
     /**

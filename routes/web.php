@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CreditController;
 use App\Http\Controllers\PaymentController;
 
@@ -25,7 +24,7 @@ Route::get('/', function () {
 
 Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('auth');
 Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/loginuser', [LoginController::class, 'login'])->name('loginuser');
+Route::post('/loginuser', [AuthController::class, 'loginuser'])->name('loginuser');
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/registeruser', [AuthController::class, 'registeruser'])->name('registeruser');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
