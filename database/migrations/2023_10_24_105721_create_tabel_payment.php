@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pegawai', function (Blueprint $table) {
+        Schema::create('payment', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->date('tanggal_lahir');
-            $table->string('gelar');
-            $table->string('nik');
+            $table->biginteger('credit_id');
+            $table->integer('amount');
+            $table->string('status');
             $table->timestamps();
+            $table->datetime('deleted_at');
         });
     }
 
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pegawai');
+        Schema::dropIfExists('payment');
     }
 };

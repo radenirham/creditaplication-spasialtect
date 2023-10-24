@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Pegawai;
+use App\Models\Credit;
+use App\Models\Payment;
 
-class PegawaiController extends Controller
+class PaymentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,8 @@ class PegawaiController extends Controller
      */
     public function index()
     {
-        $pegawai = pegawai::all();
-        return view('pegawai.index',compact('pegawai'));
+        $payment = Payment::all();
+        return view('payment.index', compact('payment'));
     }
 
     /**
@@ -25,7 +26,8 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        //
+        $credit = credit::all();
+        return view('payment.create', compact('credit'));
     }
 
     /**
@@ -34,9 +36,15 @@ class PegawaiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function createpayment(Request $request)
     {
-        //
+        $payment = payment::create([
+            'credit_id' => $request->credit_id,
+            'amount' => $request->amount,
+            'status' => $request->status,
+        ]);
+
+        return redirect()->route('payment');
     }
 
     /**
@@ -58,7 +66,8 @@ class PegawaiController extends Controller
      */
     public function edit($id)
     {
-        //
+        $payment=payment::find($id);
+        return view('payment.edit',compact('payment'));
     }
 
     /**
@@ -68,9 +77,13 @@ class PegawaiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function editpayment(Request $request, $id)
     {
-        //
+        Payment::where('id',$id)->update([
+            'status' => $request->status,
+        ]);
+
+        return redirect()->route('payment');
     }
 
     /**

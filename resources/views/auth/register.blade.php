@@ -28,10 +28,10 @@
       <form action="{{route('registeruser')}}" method="post">
         @csrf
         <div class="input-group mb-3">
-          <input type="text" class="form-control" name="name" placeholder="Full name">
+          <input type="text" class="form-control" name="phone_number" placeholder="Phone Number">
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-user"></span>
+              <span class="fas fa-phone"></span>
             </div>
           </div>
         </div>
@@ -69,7 +69,7 @@
         </div>
       </form>
 
-      <div class="social-auth-links text-center">
+      <!-- <div class="social-auth-links text-center">
         <p>- OR -</p>
         <a href="#" class="btn btn-block btn-primary">
           <i class="fab fa-facebook mr-2"></i>
@@ -79,7 +79,7 @@
           <i class="fab fa-google-plus mr-2"></i>
           Sign up using Google+
         </a>
-      </div>
+      </div> -->
 
       <a href="{{route('login')}}" class="text-center">Login</a>
     </div>
